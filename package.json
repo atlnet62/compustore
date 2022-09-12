@@ -16,6 +16,9 @@
   ],
   "author": "David WEBB",
   "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.2",

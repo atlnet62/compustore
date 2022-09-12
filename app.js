@@ -20,5 +20,5 @@ app.use(express.static(path.join(__dirname + '/public')));
 app.use(router);
 
 app.listen(PORT, ()=>{
-    console.log(`Listening at http://localhost:${PORT}`);
+    console.log(`Listening at http://localhost:${PORT}/api/v1/home`);
 });
