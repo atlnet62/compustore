@@ -1,12 +1,10 @@
 import express from "express";
-import {homePage, pageNotFound} from "../controllers/index.js";
-
-/* import des middlewares admin et user */
+import { pageNotFound } from "../controllers/index.js";
+import userRoutes from './user.routes.js';
 
 const router = express.Router();
 
-router.get("/api/v1/home", homePage);
-
+router.use("/api/v1/user", userRoutes);
 
 router.all("/*", pageNotFound);
 
