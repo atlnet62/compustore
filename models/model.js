@@ -9,7 +9,6 @@ class Model {
 
     static async getDataByKey({query, key}) {
         const [result] = await pool.execute(query, [key]);
-        console.log([result]);
         return result;
     }
 
@@ -23,5 +22,6 @@ class Model {
         return result;
     }
 }
+
 
 export default Model;
