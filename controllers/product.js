@@ -49,12 +49,12 @@ export const selectProduct = async (request, response) => {
 
 export const allProduct = async (request, response) => {
     
-    const query = "SELECT product.id AS productID, product.title, content, image_name, qtyInStock, price, category.title FROM product JOIN category ON category_id = category.id";
+    const query = "SELECT product.id AS productID, product.title AS product_name, content, image_name, qtyInStock, price, category.title AS category_name FROM product JOIN category ON category_id = category.id";
 
     try {
         const result = await Model.getAllDatas(query);
         response.status(200).json({
-            users : result,
+            products : result,
             isRetrieved: true,
         });
     } catch (error) {
@@ -197,6 +197,21 @@ export const editProduct = async (request, response) => {
     } else {
         response.status(500).json({
             error: "Fatal Error : User ID doesn't exist !",
+        });
+    }
+}
+
+export const addImage = async (request, response) => {
+
+    try {
+        await request.files.image_name.mv(`public/products/${request.files.image_name.name}`);
+        response.status(200).json({
+            name: request.files.image_name.name,
+            isUploaded: true
+        });
+    } catch (error) {
+        response.status(500).json({
+            error: error,
         });
     }
 }
