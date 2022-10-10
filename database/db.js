@@ -1,7 +1,7 @@
-import mysql from 'mysql2/promise';
+import mysql from "mysql2/promise";
 
 // on va chercher les variables d'environnement déclarées dans le fichier .env
-import {DB_HOST, DB_NAME, DB_USER, DB_PWD, DB_PORT} from './../lib/index.js';
+import { DB_HOST, DB_NAME, DB_USER, DB_PWD, DB_PORT } from "./../lib/index.js";
 
 // configuration pour se connecter à la base de données
 const pool = mysql.createPool({
@@ -12,13 +12,13 @@ const pool = mysql.createPool({
     port: DB_PORT,
     waitForConnections: true,
     connectionLimit: 10000,
-    queueLimit:0,
+    queueLimit: 0,
 });
 
 pool.getConnection()
-    .then(res => {
-        console.log(`Connected to ${res.config.database}`)
+    .then((res) => {
+        console.log(`Connected to ${res.config.database}`);
     })
-    .catch(err => console.log('ERROR --->',err))
+    .catch((err) => console.log("ERROR --->", err));
 
 export default pool;

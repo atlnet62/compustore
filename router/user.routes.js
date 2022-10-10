@@ -1,19 +1,30 @@
-import express from 'express';
-import { signup, signin, selectUser, removeUser, checkForm, editUser, addUser, allUser } from '../controllers/user.js';
-import { auth } from '../middlewares/auth.js';
+import express from "express";
+import {
+    signup,
+    signin,
+    selectUser,
+    removeUser,
+    checkForm,
+    editUser,
+    addUser,
+    allUser,
+    updateValidatedEmail
+} from "../controllers/user.js";
+import { auth } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post('/signup', signup);
-router.post('/signin', signin);
-router.get('/checkToken', auth, selectUser); 
+router.post("/signup", signup);
+router.post("/signin", signin);
+router.get("/checkToken", auth, selectUser);
 
-router.get('/all', auth, allUser); //admin
-router.post('/add', auth, addUser); //admin
-router.get('/:mode/:userUUID?', auth, checkForm); //user + admin
-router.patch('/edit/:userUUID', auth, editUser); //user + admin
-router.delete('/remove/:userUUID', auth, removeUser); //admin
+router.patch("/validateAccount/:uuid", updateValidatedEmail);
 
+router.get("/all", allUser); //admin
+router.post("/add", addUser); //admin
+router.get("/:mode/:userUUID?", checkForm); //user + admin
+router.patch("/edit/:userUUID", editUser); //user + admin
+router.delete("/remove/:userUUID", removeUser); //admin
 
 export default router;
 
